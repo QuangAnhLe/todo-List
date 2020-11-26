@@ -1,0 +1,30 @@
+<div class="jumbotron" style="text-align:center">
+    <h4 class="text-center">To-Do-Liste</h4><i class="fa fa-pencil fa-2x"></i>
+  </div>
+
+  <div style="text-align:center">
+    <h3>Bitte Datum wählen:</h3>
+    <input type="date" 
+         ng-model="date" #myDate >
+  </div>
+  <div class="input-group">
+    <input type="text" class="form-control" #itemTitle>
+    <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle,myDate)">
+      <i class="fa fa-plus-circle fa-2x"></i>
+    </div>
+  </div>
+  
+  <div style="margin:5px 0px">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of toDoListArray">
+        <span class="hover-cursor" [class.text-success]="item.isChecked" (click)="alterCheck(item.$key,item.$key_,item.isChecked)">
+          <i class="fa fa-lg" [ngClass]="item.isChecked?'fa-times-circle-o':'fa-circle-thin'"></i>
+        </span>
+        {{item.title}}**Termin am {{item.datum}}**
+        <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key,item.$key_)">
+          <i class="fa fa-trash fa-lg"></i>
+        </span>
+      </li>
+    </ul>
+  </div>
+
